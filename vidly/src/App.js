@@ -6,6 +6,8 @@ import Movies from "./components/movies";
 import Counters from "./components/counters";
 
 class App extends Component {
+  //Lifting up
+  // Single source of truth
   state = {
     counters: [
       { id: 1, value: 3 },
@@ -18,6 +20,7 @@ class App extends Component {
   };
 
   handleIncrement = counter => {
+    // clone
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
     counters[index] = { ...counter };
@@ -26,6 +29,7 @@ class App extends Component {
   };
 
   handleDecrement = counter => {
+    // clone
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
     counters[index] = { ...counter };
@@ -34,6 +38,7 @@ class App extends Component {
   };
 
   handleDelete = counterId => {
+    // filter out the deleted item
     const counters = this.state.counters.filter(c => c.id !== counterId);
     this.setState({ counters });
   };
@@ -64,6 +69,7 @@ class App extends Component {
         </main>
       </React.Fragment>
 
+      //Default
       // <div className="App">
       //   <header className="App-header">
       //     <img src={logo} className="App-logo" alt="logo" />
