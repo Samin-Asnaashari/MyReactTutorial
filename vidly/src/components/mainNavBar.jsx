@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
-const NavBar = () => {
+const MainNavBar = props => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link className="navbar-brand" to="/">
+      <Link className="navbar-brand" to="#">
         Vidly
       </Link>
       <button
@@ -29,10 +29,13 @@ const NavBar = () => {
           <NavLink className="nav-item nav-link" to="/rentals">
             Rentals
           </NavLink>
+          <NavLink className="nav-item nav-link" to="/extraExercise">
+            Extra Exercise
+          </NavLink>
         </div>
       </div>
     </nav>
   );
 };
 
-export default NavBar;
+export default MainNavBar;

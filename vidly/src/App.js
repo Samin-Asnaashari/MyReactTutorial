@@ -1,73 +1,31 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-// import logo from './logo.svg';
-import "./App.css";
-import NavBar from "./components/navbar";
 import Movies from "./components/movies";
-import Counters from "./components/counters";
-// import NotFound from "./components/notFound";
+import Customers from "./components/customers";
+import Rentals from "./components/rentals";
+import ExtraExercise from "./components/extraExercise";
+import NotFound from "./components/notFound";
+import MainNavBar from "./components/mainNavBar";
+import MovieForm from "./components/movieForm";
+import "./App.css";
+// import logo from './logo.svg';
 
 class App extends Component {
-  //Lifting up
-  // Single source of truth
-  state = {
-    counters: [
-      { id: 1, value: 3 },
-      { id: 2, value: 0 },
-      { id: 3, value: 2 },
-      { id: 4, value: 1 },
-      { id: 5, value: 6 },
-      { id: 6, value: 0 }
-    ]
-  };
-
-  handleIncrement = counter => {
-    // clone
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].value++;
-    this.setState({ counters });
-  };
-
-  handleDecrement = counter => {
-    // clone
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].value--;
-    this.setState({ counters });
-  };
-
-  handleDelete = counterId => {
-    // filter out the deleted item
-    const counters = this.state.counters.filter(c => c.id !== counterId);
-    this.setState({ counters });
-  };
-
-  handleReset = () => {
-    const counters = this.state.counters.map(c => {
-      c.value = 0;
-      return c;
-    });
-    this.setState({ counters });
-  };
-
   render() {
     return (
       <React.Fragment>
+        <MainNavBar />
         <main className="container">
-          <Movies />
-          <NavBar
-            totalCounters={this.state.counters.filter(c => c.value > 0).length}
-          />
-          <Counters
-            counters={this.state.counters}
-            onReset={this.handleReset}
-            onIncrement={this.handleIncrement}
-            onDecrement={this.handleDecrement}
-            onDelete={this.handleDelete}
-          />
+          <Switch>
+            <Route path="/movies/:id" component={MovieForm} />
+            <Route path="/movies" component={Movies} />
+            <Route path="/customers" component={Customers} />
+            <Route path="/rentals" component={Rentals} />
+            <Route path="/extraExercise" component={ExtraExercise} />
+            <Route path="/not-found" component={NotFound} />
+            <Redirect from="/" exact to="movies" />
+            <Redirect from="/not-found" />
+          </Switch>
         </main>
       </React.Fragment>
 
