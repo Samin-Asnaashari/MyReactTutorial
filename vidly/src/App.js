@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 // import logo from './logo.svg';
 import "./App.css";
 import NavBar from "./components/navbar";
 import Movies from "./components/movies";
 import Counters from "./components/counters";
+// import NotFound from "./components/notFound";
 
 class App extends Component {
   //Lifting up
